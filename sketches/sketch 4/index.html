@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" user-scalable="no" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+
+   <!-- <div onmousedown="backgroundcolor(event)" align="center"><br>Tap here for a new<br>background
+      </div>
+      -->
+  <p id="lock" align="center">Locked</p>
+      <script>
+      function backgroundcolor(event) {
+          document.body.style.backgroundColor = 'rgba(' + getRandNum(0, 255) + ',' + getRandNum(0, 255) + ',' + getRandNum(0, 255) + ',' + 0.7 + ')'
+      }
+      </script>
+
+
+
+
+  <div id="wrapper">
+
+    <div id="tap-container">
+      <div id="one" class="one tap-area">
+        Swipe
+      </div>
+       <!-- <div id="box" class="tapbox tap-area">
+        mouse click
+      </div> -->
+      <div id="two" class="two tap-area">
+       Use one or three fingers
+      </div>
+      <div id="three" class="three tap-area">
+        pinch
+      </div>
+      <div id="five" class="five tap-area">
+        drag to the left
+      </div>
+    </div>
+    <div id="output"> </div>
+    </div>
+  
+  
+      
+ 
+
+   
+
+<div id="interaction" style=""></div>
+ <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/374756/zingtouch-1.0.0.min.js"></script>
+ <script src="script.js"></script>
+</body>
+</html>
+
+  
