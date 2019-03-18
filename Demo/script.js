@@ -73,10 +73,10 @@ var pinch=new ZingTouch.Pinch({
 
 regionfour.bind(tapElementfour, pinch, function(e){
   var textElement = document.getElementById('three');
-  textElement.innerHTML = "Pinch me";
+  textElement.innerHTML = "Good job ";
  // textElement.style.backgroundColor='#ed470b';
  // textElement.style.width="950px";
-  textElement.style.fontSize="80px";
+  textElement.style.fontSize="11px";
   
 
 
@@ -86,10 +86,11 @@ regionfour.bind(tapElementfour, pinch, function(e){
     element.innerHTML = "Pinch me";
       textElement.style.width="500px";
      // textElement.style.backgroundColor='#f29137';
-      textElement.style.fontSize="11px";
+      textElement.style.fontSize="80px";
     }, 1000);
   })(textElement);  
 })
+
 
 
 // dragged gesture. The last square counted from the left.
