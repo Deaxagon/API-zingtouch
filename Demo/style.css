@@ -5,41 +5,40 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width:100%;
+  height: auto;
+  width:auto;
   font-family: 'Helvetica', Arial;
+  
 }
 
 
 #wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width:100%;
-  
+ justify-content: center;
+  align-items: center;
+  text-align:center;
+ 
 }
 
 
 
 #tap-container{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns:auto auto;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: auto;
+  height:auto;
   
-  
- /* height: 1300px;
-/*   color: white; */
+
   cursor: pointer;
   padding: 10px 20px;
-  margin:-2px -103px -19px;
+  margin:-2px -1px -19px;
    
 }
 
 
 #lock {
-  left:500px;
+  
   font-size: 200%;
   
 }
@@ -50,20 +49,35 @@ body {
    
 }
 .tap-area {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   justify-content: center;
   align-items: center;
   cursor: pointer;
  
 
   color: white;
-  padding: 10px 20px;
-  margin: 0 0 7px;
+  padding: 10px 141px;
+  margin: 0 11px 7px;
+  outline: none;
+  position: relative;
+  text-align: center;
+}
+
+.tap-area2 {
+  display: grid;
+   grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+ 
+
+  color: white;
+  padding: 10px 141px;
+  margin: 0 11px 7px;
   outline: none;
   position: relative;
   border: 0px;
-  width: 100%;
-  height: 50%;
   text-align: center;
 }
 
@@ -72,103 +86,45 @@ body {
 }
 .one {
   background-color:#a3a3a3; 
- 
-  /*border-radius:100%; */
-  width:331px;
-  height:500px;
+ width:200px;
+  height:400px;
   left: 100px;
    font-size: 60px;
    position: relative;
 }
 
-#insideone{
-
-  background-image:url("japanesesong.png");
-  background-repeat: no-repeat;
-  background-position:center;
-  background-size:cover;
-  width: 330px;
-  height: 500px;
-   left:0px;
-    top:-1px;
-  position: absolute;
-  font-size: 60px;
-  text-align: center;
-/*  -webkit-box-shadow: 17px 4px 36px -14px rgba(89,89,89,0.79);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}
-#insidetwo{
-  
-  background-image:url("japanesesong 2.png");
-  background-repeat: no-repeat;
-  background-position:center;
-  background-size:cover;
-  width: 330px;
-  height: 500px;
-   left:0px;
-  top:3px;
- position:absolute;
-  font-size: 60px;
-  
-/*-webkit-box-shadow: 17px 4px 36px -14px rgba(89,89,89,0.79); */
-}
-#text{
-top:3px;
- 
-}
 
 .two {
  /* border-radius: 100%; */
-  width:500px;
-  height:500px;
-  background-image:url("IMG_01.png");
-  background-repeat: no-repeat;
-  background-position:center;
-  background-size:cover;
+width:200px;
+  height:400px;
+
+  background-color:blue;
   left: 100px;
  font-size: 40px;
-  background-color: #435eb7;
 }
- 
-.tapbox{
-  width:500px;
-  height:500px;
-background-color: #435eb7;
-left:100px;
- font-size: 60px;
-}
- 
 .three{
-/* border-radius: 100%; */
-  color:#EE7600;
-  width:500px;
-  height:500px;
-background: #ffffff;
-left:100px;
-font-size: 80px;
-touch-action: none; 
+  width:200px;
+  height:400px;
+  background-color:blue;
+  left:100px;
+  font-size:40px;
+  
 }
-.form {
- text-align: right;
-}
-.five{
-    width:500px;
-  height:500px;
-background: #d16c0e;
-left:100px;
-   font-size: 60px;
+.four{
+  width:200px;
+  height:400px;
+  background-color:grey;
+  left:100px;
+  font-size:40px;
 }
 
-
-
-
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.tappable{
+  border-left: black 2px solid;
+  border-right: black 2px solid;
+  border-top: black 2px solid;
+  border-bottom: black 2px solid;
 }
-
-
-
 
 
 
@@ -182,16 +138,7 @@ left:100px;
   /*color: white;  bottom text */
 }
 
-#output {
-  background-color: transparent;
-  width: 100%;
-  display: block;
-  min-height: 30px;
-  padding: 10px;
-  font-size: 0.8em;
-  /*color: white; bottom text */
-  
-} 
+
 
 
 

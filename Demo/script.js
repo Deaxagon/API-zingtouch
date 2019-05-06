@@ -1,130 +1,149 @@
 
 
+var colorBlockTwo = ['blue', 'yellow','red','violet','orange','grey'];
+var colorThree = ['Teal', 'Fuchsia','purple','green','Olive','grey'];
+var colorSelect2=-1;
+var colorSelect=-1;
 
 
 
-// swipe, before it was one tap gesture. This is the first square counted from the left.
-var tapElementOne = document.getElementById('insideone'); 
+var tapElementOne = document.getElementById('two'); 
+var elementTwo=document.getElementById('one');
+var elementThree=document.getElementById('three');
+var elementFour=document.getElementById('four');
+var topText=document.getElementById('lock');
+var x=0;
+var y=0;
+var c;
+var z;
 
-var regionOne = new ZingTouch.Region(tapElementOne, true, false); //creates a gesture area/ region where any of the gestures can be performed
-var longTap = new ZingTouch.Tap({ // this is where you specify what gesture you want in the region.
-  maxDelay: 1000
-})
-var swipe=new ZingTouch.Swipe({
-	numInputs: 1,
-	maxRestTime: 100,
-	escapeVelocity: 0.2
-});
+var regionOne = new ZingTouch.Region(tapElementOne, true, false); //creates a gesture region where any of the gestures can be performed
 
-regionOne.bind(tapElementOne, swipe, function(e){
-  var Element = document.getElementById('insideone');
-  tapElementOne.style.visibility="hidden";
+var chainObject = regionOne.bind(tapElementOne);
+
+chainObject
+	.tap(function(e){
+  colorSelect=0;
+  tapElementOne.style.backgroundColor=colorBlockTwo[colorSelect];
   
+	})
+	.swipe(function(e){
+		elementTwo.innerHTML = "tappable";
+  elementTwo.classList.add('tappable');
+   if(colorSelect<colorBlockTwo.length){
+     tapElementOne.style.backgroundColor='grey';
+    colorSelect++;
+  tapElementOne.style.backgroundColor=colorBlockTwo[colorSelect+1];
+  elementTwo.style.backgroundColor=colorBlockTwo[colorSelect];
+    console.log(colorSelect+"colorselect");
+     }
+ 
   
-
- /* (function(element){ 
-    setTimeout(function(){ // this function sets a timer for the gesture to reset.
-     Element.innerHTML = "Swipe";
-      Element.style.backgroundColor='#5073b7';
-    //  Element.style.backgroundImage = "url ('https://cdn.glitch.com/df4e1adc-c839-444a-8e43-2a6562c72f15%2F41kfpJIBwcL._SS500.jpg?1551097542303') ";
-    }, 1000);
-  })(Element); */
-})
+ if(colorSelect==4){
+    regionOne.unregister('swipe');
+   regionOne.unregister('tap');
+   tapElementOne.innerHTML = ""; 
+   tapElementOne.classList.remove('tappable');
+  }
+	}, true)
 
 
-// Here I set the second square to be a clickable object, since Zingtouch doesn't seem to have an option for changing the number of inputs after you have set it.
+var regionTwo= new ZingTouch.Region(document.getElementById('one'));
 
-document.getElementById("two").addEventListener("click", function(){
-  document.getElementById("two").style.background='#ef5e04';
-  document.getElementById("two").style.backgroundImage="url('IMG_02.PNG')";
-  document.getElementById("two").innerHTML = "One finger";
+var myTapGesture = new ZingTouch.Tap({ maxDelay : 200 });
+regionTwo.register('customTap', myTapGesture);
+
+var mySwipe=new ZingTouch.Swipe({maxRestTime: 200});
+regionTwo.register('customSwipe', mySwipe);
+
+var chainObject2 = regionTwo.bind(elementTwo);
+
+chainObject2
+	.customTap(function(e){
+ elementFour.style.backgroundColor=colorBlockTwo[colorSelect]; 
+ if(colorSelect==1){
+ elementFour.classList.add('tappable');
+ elementFour.innerHTML = "getting close";
+ elementTwo.innerHTML="";
+  }
+	})
+	.customSwipe(function(e){
+     if(colorSelect<colorBlockTwo.length){
+      y=colorSelect;
+  //   tapElementOne.style.backgroundColor='grey';
+    colorSelect++;
+ // elementTwo.style.backgroundColor=colorBlockTwo[colorSelect-2];
+ // tapElementOne.style.backgroundColor=colorBlockTwo[colorSelect-1];
+    console.log(colorSelect);
+     }
+  if(colorSelect==3){
+  // regionTwo.unregister('customSwipe'); // needs to be individual colorSelect that counts in different ways
+  }
+	}, true)
+
+
+var regionThree= new ZingTouch.Region(document.getElementById('three'));
+
+var threeTap= new ZingTouch.Tap({ maxDelay : 200, numInputs: 1  });
+regionThree.register('Tap', threeTap);
+
+var threeSwipe=new ZingTouch.Swipe({maxRestTime: 200});
+regionThree.register('Swipe', threeSwipe);
+
+var chainObject3 = regionThree.bind(elementThree);
+
+chainObject3
+	.Tap(function(e){
+  colorSelect2=0;
+  elementThree.style.backgroundColor=colorThree[colorSelect2];
+  console.log(colorSelect2+" colorselect2");
   
-});
+//  elementThree.innerHTML="tapped";
+	})
+	.Swipe(function(e){
+  	
+  //elementFour.classList.add('tappable');
+     if(colorSelect2<colorThree.length){
+     elementThree.style.backgroundColor='grey';
+    colorSelect2++;
+  elementThree.style.backgroundColor=colorThree[colorSelect2+1];
+  elementFour.style.backgroundColor=colorThree[colorSelect2];
+    console.log(colorSelect2+" colorselect2");
+     }
+ 
+  if(colorSelect2==4){
+   regionThree.unregister('Swipe');
+    regionThree.unregister('Tap');
+    elementThree.innerHTML = ""; 
+    elementThree.classList.remove('tappable');
+  }
+	}, true)
 
-// This is the second square counted from the left.
-var tapElementTwo = document.getElementById('two');
+var regionFour = new ZingTouch.Region(elementFour, true, false);
+var fourTap= new ZingTouch.Tap({ maxDelay : 200, numInputs: 1  });
 
-var TwoFingerTap = new ZingTouch.Tap({ // Creates a new gesture, before it was meant to be a two fingertap but now three. Under this you can set different behavior of the tap gesture.
-  numInputs: 3,
-  maxDelay: 1000
-});
-
-var regionTwo = new ZingTouch.Region(tapElementTwo, true, false); // Gets the area where the gesture will take place 
-regionTwo.bind(tapElementTwo, TwoFingerTap, function(e){ // creates the area and binds the gesture( three tap) to it.
-
-
-  var textElement = document.getElementById('two'); // The function is called and then executes these things
-  textElement.innerHTML = "three fingers";
-  textElement.style.background='#af541c';
-  textElement.style.backgroundImage="url('IMG_03.PNG')";
-    
-  
-    
-}) 
-
-
-
-// this is the third square, using a pinch gesture.
-var tapElementfour = document.getElementById('three');
-var regionfour = new ZingTouch.Region(tapElementfour, true, false);
-var pinch=new ZingTouch.Pinch({ 
-	distance: 10
-});
-
-regionfour.bind(tapElementfour, pinch, function(e){
-  var textElement = document.getElementById('three');
-  textElement.innerHTML = "Good job ";
- // textElement.style.backgroundColor='#ed470b';
- // textElement.style.width="950px";
-  textElement.style.fontSize="11px";
-  
-
-
-  (function(element){
-    setTimeout(function(){
-
-    element.innerHTML = "Pinch me";
-      textElement.style.width="500px";
-     // textElement.style.backgroundColor='#f29137';
-      textElement.style.fontSize="80px";
-    }, 1000);
-  })(textElement);  
-})
-
-
-
-// dragged gesture. The last square counted from the left.
-var tapElementfive = document.getElementById('five');
-var regionfive = new ZingTouch.Region(tapElementfive, true, false);
-var pan=new ZingTouch.Pan({
-	threshold: 100
-});
-
-
- function getOffset(el) {
-  const rect = el.getBoundingClientRect();
-  return {
-    left: rect.left ,
-    top: rect.top 
-  };
+regionFour.bind(elementFour, fourTap, function(e){
+  x=colorSelect2;
+  elementTwo.style.backgroundColor=colorThree[colorSelect2];
+  console.log(x+" x starts now");
+  console.log(y+" y starts now");
+console.log(colorSelect+"colorselect");
+console.log(colorSelect2+" colorselect2");
+  if(x==2&&y==0&&colorSelect==1&&colorSelect2==2){
+  console.log("win");
+topText.innerHTML="You made it!"; 
+  document.body.style.backgroundColor = "#4A4A4A";
 }
-
-
-regionfive.bind(tapElementfive, pan, function(e){
-  var textElement = document.getElementById('five');
-  textElement.innerHTML=" ";
- textElement.style.background='#e54237';
-
-  textElement.style.left='-100px';
-   
-
-  (function(element){
-    setTimeout(function(){
-      
-     // textElement.style.background='#d16c0e';
-    }, 1000);
-  })(textElement);   
 })
+
+
+
+
+
+
+ 
+
+
 
 
 
